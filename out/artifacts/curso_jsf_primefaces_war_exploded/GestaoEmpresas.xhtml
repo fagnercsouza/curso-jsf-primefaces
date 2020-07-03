@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+
+        lang="pt-BR">
+<h:head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Gestão Empresas</title>
+    <h:outputStylesheet library="algaworks" name="style.css"/>
+</h:head>
+<h:body>
+    <header>
+        <h:graphicImage library="algaworks" name="logo.png"/>
+    </header>
+
+
+    <div id="conteudo">
+        <h:form>
+            <h:panelGrid columns="2" >
+                <h:outputLabel value="Razão social: " for="razaoSocial"/>
+                <h:inputText id="razaoSocial" value="#{gestaoEmpresasBean.empresa.razaoSocial}"/>
+
+                <h:outputLabel value="CNPJ: " for="cnpj"/>
+                <h:inputText id="cnpj" value="#{gestaoEmpresasBean.empresa.cnpj}"/>
+
+                <h:outputLabel value="Nome fantasia: " for="nomeFantasia"/>
+                <h:inputText id="nomeFantasia" value="#{gestaoEmpresasBean.empresa.nomeFantasia}"/>
+
+                <h:outputLabel value="Tipo empresa" for="tipoEmpresa" />
+                <h:selectOneMenu id="tipoEmpresa" value="#{gestaoEmpresasBean.empresa.tipoEmpresa}">
+                    <f:selectItem itemLabel="Selecione..."/>
+                    <f:selectItems value="#{gestaoEmpresasBean.tiposEmpresa}" var="tipoEmpresa" itemLabel="#{tipoEmpresa.descricao}" itemValue="#{tipoEmpresa}"/>
+                </h:selectOneMenu>
+
+                <h:outputLabel/>
+                <h:commandButton value="Salvar" actionListener="#{gestaoEmpresasBean.salvar}"/>
+
+            </h:panelGrid>
+            <h:dataTable value="#{[0,0,0,0,0]}" >
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Razão social"/>
+                    </f:facet>
+                    <h:outputText value="AlgaWorks Treinamentos LTDA"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Nome fantasia"/>
+                    </f:facet>
+                    <h:outputText value="AlgaWorks "/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Tipo empresa"/>
+                    </f:facet>
+                    <h:outputText value="LTDA"/>
+                </h:column>
+            </h:dataTable>
+
+        </h:form>
+    </div>
+
+
+
+
+    <footer>Curso Online - "JSF e PrimeFaces Essencial"</footer>
+
+    <script>
+        $("#cnpj").blur(function() {
+            if ($(this).val().length == 0) {
+                $(this).val("Buscar por CPF/CNPJ");
+                $(this).css("color", "#ccc");
+            }
+            if ($(this).val().length == 14) {
+                $(this).val(mascaraCNPJCompleto($(this).val()));
+            }
+            if ($(this).val().length == 11) {
+                $(this).val(mascaraCPFCompleto($(this).val()));
+            }
+        });
+
+        //CNPJ - 99.999.999/9999-99
+        function mascaraCNPJCompleto(val)
+        {
+            var ret = "";
+            ret += val.substr(0, 2) + ".";
+            ret += val.substr(2, 3) + ".";
+            ret += val.substr(5, 3) + "/";
+            ret += val.substr(8, 4) + "-";
+            ret += val.substr(12, 2);
+            return ret;
+        }
+    </script>
+</h:body>
+</html>

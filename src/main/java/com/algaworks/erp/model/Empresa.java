@@ -68,6 +68,15 @@ public class Empresa implements Serializable {
     public void setRamoAtividade(RamoAtividade ramoAtividade) {
         this.ramoAtividade = ramoAtividade;
     }
+
+    public TipoEmpresa getTipoEmpresa() {
+        return tipoEmpresa;
+    }
+
+    public void setTipoEmpresa(TipoEmpresa tipoEmpresa) {
+        this.tipoEmpresa = tipoEmpresa;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

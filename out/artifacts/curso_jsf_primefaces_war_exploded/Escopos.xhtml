@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+
+        lang="pt-BR">
+<h:head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Gestão Empresas</title>
+    <h:outputStylesheet library="algaworks" name="style.css"/>
+</h:head>
+<h:body>
+    <header>
+        <h:graphicImage library="algaworks" name="logo.png"/>
+    </header>
+    <h1>TIPO DE ESCOPO - Ciclo de vida</h1>
+    <div id="conteudo">
+        <h:form>
+            <h:panelGrid columns="2" >
+                <h:outputLabel value="Número: " />
+                <h:outputText value="#{gestaoEmpresasBean.numero}" />
+
+                <h:outputLabel/>
+                <h:commandButton value="Salvar"/>
+            </h:panelGrid>
+
+        </h:form>
+        <div>
+            <ul>
+                <li>TIPO DE ESCOPO - Ciclo de vida</li>
+                <li>RequestScoped = é criado uma nova instância a cada requisição (GET/POST)</li>
+                <li>ViweScoped = é criado uma nova instância quando o usuário carrega a página (apenas GET) e se encerra quando a sessão termina  </li>
+                <li>SessionScoped = é criado apenas no inicio da sessão </li>
+                <li>ApplicationScoped = é criada apenas uma única instância</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>Curso Online - "JSF e PrimeFaces Essencial"</footer>
+</h:body>
+</html>
